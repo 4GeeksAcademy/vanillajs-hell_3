@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Dominios</title>
+  </head>
+  <body>
+    <h1>Dominios Generados</h1>
+    <ul id="domain-list"></ul>
+
+    <script>
+      let pronombre = ["El", "Nuestro"];
+      let adjetivo = ["grande", "pequeño"];
+      let sustantivo = ["corredor", "mapache"];
+      let dom = [".com", ".es", ".net", ".Viva_Dani!"];
+
+      // Función para generar todas las combinaciones posibles
+      function generarDominios(pronombre, adjetivo, sustantivo) {
+        let dominios = [];
+        for (let p of pronombre) {
+          for (let a of adjetivo) {
+            for (let s of sustantivo)
+              for (let d of dom) {
+                dominios.push(`${p}${a}${s}${d}`);
+              }
+          }
+        }
+        return dominios;
+      }
+
+      function renderizarDominios(dominios) {
+        const lista = document.getElementById("domain-list");
+        dominios.forEach((dominio) => {
+          const elementoLista = document.createElement("li");
+          elementoLista.textContent = dominio;
+          lista.appendChild(elementoLista);
+        });
+      }
+
+      const todosLosDominios = generarDominios(pronombre, adjetivo, sustantivo);
+      renderizarDominios(todosLosDominios);
+    </script>
+  </body>
+</html>
